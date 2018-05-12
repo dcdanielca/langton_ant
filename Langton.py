@@ -15,9 +15,7 @@ pygame.init()
 def dibujarM(window, matriz):
 
     for i in range(len(matriz)):
-
         for j in range(len(matriz[i])):
-
             if matriz[i][j] == 0:
                 pygame.draw.rect(window, (0, 0, 0, 0), (j*10, i*10, 10, 10), 1)
             else:
@@ -27,13 +25,9 @@ def dibujarM(window, matriz):
 def crearMatriz(n):
 
     lista = []
-
     for i in range(n):
-
         lista.append([])
-
         for j in range(n):
-
             lista[i].append(0)
 
     return lista
@@ -101,35 +95,25 @@ def mover(matriz, hm):
 def start():
 
     window = pygame.display.set_mode((1366, 768))
-
     matriz = crearMatriz(100)
-
     posX, posY, estado = 25, 25, "arriba"
-
     hormiga = [posY, posX, estado]
 
     while True:
         window.fill((230, 230, 230))
-
         matriz, hormiga = mover(matriz, hormiga)
-
         dibujarM(window, matriz)
 
         for events in pygame.event.get():
-
             if events.type == QUIT:
-
                 pygame.quit()
-
                 sys.exit()
 
         pygame.display.update()
 
 
 def main():
-
     start()
-
     pass
 
 
