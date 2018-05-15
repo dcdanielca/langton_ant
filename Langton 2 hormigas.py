@@ -101,11 +101,11 @@ def start():
     posX2, posY2, estado2 = 200, 30, "arriba"
     hormiga1 = [posY1, posX1, estado1]
     hormiga2 = [posY2, posX2, estado2]
-    
+
     clock = pygame.time.Clock()
     clock.tick(1000)
-    count = 0  # count contiene el número de iteraciones  
-    
+    count = 0  # count contiene el número de iteraciones
+
     window.fill((230, 230, 230))
     while True:
         matriz, hormiga1 = mover(matriz, hormiga1)
