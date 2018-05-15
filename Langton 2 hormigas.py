@@ -54,40 +54,40 @@ def estado(estado_, bandera):
             return "abajo"
 
 
-def mover(matriz, hm):
+def mover(matriz, hm1):
 
-    if hm[0] > (len(matriz)-1):
-        hm[0] = int(len(matriz)/2)
-    if hm[0] < 0:
-        hm[0] = int(len(matriz)/2)
-    if hm[1] > (len(matriz)-1):
-        hm[1] = int(len(matriz)/2)
-    if hm[1] < 0:
-        hm[1] = int(len(matriz)/2)
+    if hm1[0] > (len(matriz)-1):
+        hm1[0] = int(len(matriz)/2)
+    if hm1[0] < 0:
+        hm1[0] = int(len(matriz)/2)
+    if hm1[1] > (len(matriz)-1):
+        hm1[1] = int(len(matriz)/2)
+    if hm1[1] < 0:
+        hm1[1] = int(len(matriz)/2)
 
-    if matriz[hm[0]][hm[1]] == 0:
-        matriz[hm[0]][hm[1]] = 1
-        hm[2] = estado(hm[2], "derecha")
-        if hm[2] == "arriba":
-            hm[0] -= 1
-        elif hm[2] == "derecha":
-            hm[1] += 1
-        elif hm[2] == "abajo":
-            hm[0] += 1
+    if matriz[hm1[0]][hm1[1]] == 0:
+        matriz[hm1[0]][hm1[1]] = 1
+        hm1[2] = estado(hm1[2], "derecha")
+        if hm1[2] == "arriba":
+            hm1[0] -= 1
+        elif hm1[2] == "derecha":
+            hm1[1] += 1
+        elif hm1[2] == "abajo":
+            hm1[0] += 1
         else:
-            hm[1] -= 1
+            hm1[1] -= 1
     else:
-        matriz[hm[0]][hm[1]] = 0
-        hm[2] = estado(hm[2], "izquierda")
-        if hm[2] == "arriba":
-            hm[0] -= 1
-        elif hm[2] == "derecha":
-            hm[1] += 1
-        elif hm[2] == "abajo":
-            hm[0] += 1
+        matriz[hm1[0]][hm1[1]] = 0
+        hm1[2] = estado(hm1[2], "izquierda")
+        if hm1[2] == "arriba":
+            hm1[0] -= 1
+        elif hm1[2] == "derecha":
+            hm1[1] += 1
+        elif hm1[2] == "abajo":
+            hm1[0] += 1
         else:
-            hm[1] -= 1
-    return matriz, hm
+            hm1[1] -= 1
+    return matriz, hm1
 
     pass
 
@@ -96,12 +96,15 @@ def start():
 
     window = pygame.display.set_mode((1024, 768))
     matriz = crearMatriz(100)
-    posX, posY, estado = 25, 25, "arriba"
-    hormiga = [posY, posX, estado]
-
+    posX1, posY1, estado1 = 20, 25, "arriba"
+    posX2, posY2, estado2 = 25, 25, "arriba"
+    hormiga1 = [posY1, posX1, estado1]
+    hormiga2 = [posY2, posX2, estado2]
+    
     while True:
         window.fill((230, 230, 230))
-        matriz, hormiga = mover(matriz, hormiga)
+        matriz, hormiga1 = mover(matriz, hormiga1)
+        matriz, hormiga2 = mover(matriz, hormiga2)
         dibujarM(window, matriz)
 
         for events in pygame.event.get():

@@ -94,7 +94,7 @@ def mover(matriz, hm):
 
 def start():
 
-    window = pygame.display.set_mode((1024, 768))
+    window = pygame.display.set_mode((1366, 768))
     matriz = crearMatriz(100)
     posX, posY, estado = 25, 25, "arriba"
     hormiga = [posY, posX, estado]
