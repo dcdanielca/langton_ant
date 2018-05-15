@@ -2,6 +2,7 @@
     @author Daniel Cano
     Tomado de http://www.solveet.com/exercises/Hormiga-de-Langton/402/solution-2336
     Pasado de python2 a python3 bajo los estándares de pep8
+    Representación con 2 hormigas
     python Langton.py
 """
 
@@ -17,9 +18,9 @@ def dibujarM(window, matriz):
     for i in range(len(matriz)):
         for j in range(len(matriz[i])):
             if matriz[i][j] == 0:
-                pygame.draw.rect(window, (0, 0, 0, 0), (j*10, i*10, 10, 10), 1)
+                pygame.draw.rect(window, (0, 0, 0, 0), (j*5, i*5, 5, 5), 1)
             else:
-                pygame.draw.rect(window, (0, 0, 0, 0), (j*10, i*10, 10, 10), 0)
+                pygame.draw.rect(window, (0, 0, 0, 0), (j*5, i*5, 5, 5), 0)
 
 
 def crearMatriz(n):
@@ -94,25 +95,30 @@ def mover(matriz, hm1):
 
 def start():
 
-    window = pygame.display.set_mode((1024, 768))
-    matriz = crearMatriz(100)
-    posX1, posY1, estado1 = 20, 25, "arriba"
-    posX2, posY2, estado2 = 25, 25, "arriba"
+    window = pygame.display.set_mode((1366, 768))
+    matriz = crearMatriz(300)
+    posX1, posY1, estado1 = 100, 30, "izquierda"
+    posX2, posY2, estado2 = 200, 30, "arriba"
     hormiga1 = [posY1, posX1, estado1]
     hormiga2 = [posY2, posX2, estado2]
     
+    clock = pygame.time.Clock()
+    clock.tick(1000)
+    count = 0  # count contiene el número de iteraciones  
+    
+    window.fill((230, 230, 230))
     while True:
-        window.fill((230, 230, 230))
         matriz, hormiga1 = mover(matriz, hormiga1)
         matriz, hormiga2 = mover(matriz, hormiga2)
-        dibujarM(window, matriz)
+        if count > 10000:
+            dibujarM(window, matriz)
+            pygame.display.update()
 
         for events in pygame.event.get():
             if events.type == QUIT:
                 pygame.quit()
                 sys.exit()
-
-        pygame.display.update()
+        count += 1
 
 
 def main():

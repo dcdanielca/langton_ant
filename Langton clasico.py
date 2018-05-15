@@ -17,9 +17,9 @@ def dibujarM(window, matriz):
     for i in range(len(matriz)):
         for j in range(len(matriz[i])):
             if matriz[i][j] == 0:
-                pygame.draw.rect(window, (0, 0, 0, 0), (j*10, i*10, 10, 10), 1)
+                pygame.draw.rect(window, (0, 0, 0, 0), (j*5, i*5, 5, 5), 1)
             else:
-                pygame.draw.rect(window, (0, 0, 0, 0), (j*10, i*10, 10, 10), 0)
+                pygame.draw.rect(window, (0, 0, 0, 0), (j*5, i*5, 5, 5), 0)
 
 
 def crearMatriz(n):
@@ -95,21 +95,27 @@ def mover(matriz, hm):
 def start():
 
     window = pygame.display.set_mode((1366, 768))
-    matriz = crearMatriz(100)
-    posX, posY, estado = 25, 25, "arriba"
+    matriz = crearMatriz(300)
+    posX, posY, estado = 150, 30, "arriba"
     hormiga = [posY, posX, estado]
+    
+    clock = pygame.time.Clock()
+    clock.tick(1000)
+    count = 0  # count contiene el número de iteraciones  
 
+    window.fill((230, 230, 230))
     while True:
-        window.fill((230, 230, 230))
         matriz, hormiga = mover(matriz, hormiga)
-        dibujarM(window, matriz)
+        if count > 372500:
+            dibujarM(window, matriz)
+            pygame.display.update()
 
         for events in pygame.event.get():
             if events.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
-        pygame.display.update()
+        count +=1
 
 
 def main():
